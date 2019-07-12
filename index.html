@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Penme - Quick Text Editor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/6d5d6cb617.js"></script>
+  <link rel="stylesheet" href="/css/bulma/bulmaswatch.min.css">
+  <link href="/js/quill/quill.snow.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+
+<body class="is-dark">
+
+  <nav class="navbar is-transparent">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="http://bulma.io">
+        <p class="penme-name">penme</p>
+      </a>
+      <div class="navbar-burger burger" data-target="navbar-extra">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div id="navbar-extra" class="navbar-menu">
+
+      <div class="navbar-end">
+
+        <div class="navbar-item">
+          <div class="field is-grouped">
+              <p class="control">
+                  <a class="button is-danger is-medium is-rounded is-outlined" href="/about">
+                    <span class="icon">
+                      <i class="far fa-clipboard"></i>
+                    </span>
+                    <span> 1</span>
+                  </a>
+                </p>
+                <p class="control">
+                    <a class="button is-danger is-medium is-rounded is-outlined" href="/about">
+                      <span class="icon">
+                        <i class="far fa-clipboard"></i>
+                      </span>
+                      <span> 2</span>
+                    </a>
+                  </p>
+                  <p class="control">
+                      <a class="button is-danger is-rounded is-medium is-outlined" href="/about">
+                        <span class="icon">
+                          <i class="far fa-clipboard"></i>
+                        </span>
+                        <span> 3</span>
+                      </a>
+                    </p>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- <section class="section editor"> -->
+    <!-- <div class="container"> -->
+      <div class="pre-editor">
+      
+      <div id="pm-editor">
+        
+      </div>
+    </div>
+
+    <!-- </div> -->
+  <!-- </section> -->
+
+  <!-- <button onclick="g"> LOAD </button> -->
+<footer>
+  <p>Made With 💖 by XEDTECH | <u><a href="/about">About</a></u></p>
+</footer>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="./js/quill/quill.min.js"></script>
+<script src="js/store.modern.min.js"></script>
+<!-- <script src="./js/jspdf.min.js"></script> -->
+<!-- <script type="text/javascript" src="./js/html2pdf.bundle.min.js"></script> -->
+
+
+<!-- <link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet"> -->
+<!-- <script src="//cdn.quilljs.com/1.3.6/quill.core.js"></script> -->
+
+<script type="text/javascript">
+  $(function () {
+    $('.modal-background, .modal-close').click(function () {
+      $('html').removeClass('is-clipped');
+      $(this).parent().removeClass('is-active');
+    });
+
+
+    // Get all "navbar-burger" elements
+    var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any nav burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach(function ($el) {
+        $el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          var target = $el.dataset.target;
+          var $target = document.getElementById(target);
+
+          // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+          $el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+  });
+</script>
+
+<script src="js/main.js"></script>
+
+</html>

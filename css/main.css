@@ -1,0 +1,35 @@
+.penme-name{
+    font-family: "Orbitron";
+    font-size: 25px;
+    color: #d9534f;
+}
+
+.pre-editor{
+margin-top : 20px !important;
+margin-left : 15px !important;
+margin-right : 15px !important;
+}
+
+footer p{
+    position: fixed;     
+    text-align: center;    
+    bottom: 0px; 
+    width: 100%;
+    font-size: 12px;
+}
+/* .ql-container.ql-snow{
+    border: 3px solid #d9534f;
+}
+.ql-toolbar.ql-snow{
+    border: 3px solid #d9534f;
+    /* color: white; */
+/* } */
+/* .ql-toolbar.ql-snow.ql-formats{
+    color: white;
+} */
+/* .ql-toolbar button.octicon, .ql-toolbar button.fa {
+    border: none;
+    background: none;
+    width: 1.5em;
+    color: rgb(206, 33, 33);
+  } */
