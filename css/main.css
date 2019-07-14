@@ -17,6 +17,17 @@ footer p{
     width: 100%;
     font-size: 12px;
 }
+
+.about-box{
+    border: 2px solid white;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.about-box h2{
+    font-size: 30px !important;
+    text-align: center;
+}
 /* .ql-container.ql-snow{
     border: 3px solid #d9534f;
 }
