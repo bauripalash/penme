@@ -1,3 +1,5 @@
+window.EVERCHECKED = false;
+
 var toolbarOptions = [
   [{
     'header': [1, 2, 3, false]
@@ -66,37 +68,144 @@ function hideAbout() {
   removeClass(document.getElementById("about-modal"), "is-active");
 }
 
-function showShare(){
+function showShare() {
   addClass(document.getElementById("share-modal"), "is-active");
 }
 
-function hideShare(){
+function hideShare() {
   removeClass(document.getElementById("share-modal"), "is-active");
 }
 
-function saveAsPDF(){
+function saveAsPDF() {
   var doc = new jsPDF();
   var source = editor.root.innerHTML;
   doc.fromHTML(
     source,
     15,
-    15,
-    {
+    15, {
       'width': 180
     });
 
-    // doc.output("datauri");
-    doc.save(Date.now());
-    hideShare()
-  
+  // doc.output("datauri");
+  doc.save(Date.now() + ".pdf");
+  hideShare();
+
 }
 
-// editor.root.innerHTML = store.get("draft0")
+function saveAsTXT() {
+  data = editor.getText();
+  fileName = Date.now() + ".txt";
+  var a = document.createElement("a");
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.href = window.URL.createObjectURL(
+    new Blob([data], {
+      type: "text/plain;charset=utf-8"
+    })
+  );
+  a.setAttribute("download", fileName);
+  a.click();
+  window.URL.revokeObjectURL(a.href);
+  document.body.removeChild(a);
+  hideShare();
+}
 
-// setInterval(function(){saveDraft()},3000);
+// var setLS_1 = function(){
+//   store.set("slot" , "1");
+//   removeClass(document.getElementById("slot1") , "is-outlined");
+// };
 
-// var saveDraft = function(){
-//     data = editor.root.innerHTML;
-//     store.set("draft0" , data);
-//     console.log(store.get("draft0"));
-// }
+// var setLS_2 = function(){
+//   store.set("slot" , "2");
+//   removeClass(document.getElementById("slot2") , "is-outlined");
+// };
+
+// var setLS_3 = function(){
+//   store.set("slot" , "3");
+//   removeClass(document.getElementById("slot3") , "is-outlined");
+// };
+
+// window.onload = function(e){
+//   whichslot = store.get("slot");
+//   if (whichslot == "1"){
+//     removeClass(document.getElementById("slot1l") , "is-outlined");
+//   }else if (whichslot == "2"){
+//     removeClass(document.getElementById("slot2l") , "is-outlined");
+
+//   }else if (whichslot == "3"){
+//     removeClass(document.getElementById("slot3l") , "is-outlined");
+
+//   }else{
+    
+//   }
+// };
+
+
+
+var rad = document.slotForm.slot;
+var prev = null;
+for (var i = 0; i < rad.length; i++) {
+    rad[i].addEventListener('change', function() {
+        (prev) ? addClass(document.getElementById(prev.value + "l") , "is-outlined"): null;
+        if (this !== prev) {
+            prev = this;
+        }
+        slotchange(this.value);
+    });
+}
+
+function slotchange(v){
+  window.EVERCHECKED = true;
+  if (v == "slot1"){
+        removeClass(document.getElementById("slot1l") , "is-outlined");
+        loadslot("1");
+      }else if (v == "slot2"){
+        removeClass(document.getElementById("slot2l") , "is-outlined");
+        loadslot("2");
+      }else if (v == "slot3"){
+        loadslot("3");
+        removeClass(document.getElementById("slot3l") , "is-outlined");
+          }else{
+    
+  }
+    
+}
+
+function loadslot(s){
+  editor.root.innerHTML = store.get("draft" + s);
+}
+
+if (EVERCHECKED){
+  try {
+    setInterval(function() {
+      
+      if (["1" , "2" , "3"].indexOf(store.get("slot"))){
+        getslot = store.get("slot");
+      }else{
+        getslot = "0";
+      }
+      
+      store.set("draft" + getslot, editor.root.innerHTML);
+    }, 1000);
+  } catch (e) {
+    if (e == QUOTA_EXCEEDED_ERR) {
+      alert('AutoSave Failed!');
+    }
+  }
+}else{
+  try {
+    setInterval(function() {
+      store.set("draft0", editor.root.innerHTML);
+    }, 1000);
+  } catch (e) {
+    if (e == QUOTA_EXCEEDED_ERR) {
+      alert('AutoSave Failed!');
+    }
+  }
+}
+
+
+window.onload = function(e){
+  editor.root.innerHTML = store.get("draft0");
+}
+
