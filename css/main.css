@@ -1,37 +1,37 @@
-.penme-name{
+.penme-name {
     font-family: "Orbitron";
     font-size: 25px;
     color: #d9534f;
 }
 
-.pre-editor{
-margin-top : 20px !important;
-margin-left : 15px !important;
-margin-right : 15px !important;
+.pre-editor {
+    margin-top: 20px !important;
+    margin-left: 15px !important;
+    margin-right: 15px !important;
 }
 
-footer p{
-    position: fixed;     
-    text-align: center;    
-    bottom: 0px; 
+footer p {
+    position: fixed;
+    text-align: center;
+    bottom: 0px;
     width: 100%;
     font-size: 12px;
 }
 
-.about-box{
+.about-box {
     border: 2px solid white;
     padding-left: 12px;
     padding-right: 12px;
 }
 
-.about-box h2{
+.about-box h2 {
     font-size: 30px !important;
     text-align: center;
 }
 
-.modal{
-    padding-left : 5px !important;
-    padding-right : 5px !important;
+.modal {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
 }
 
 /*
@@ -39,30 +39,60 @@ footer p{
   we will use just the label to create pushbutton effect
 */
 input[type=radio] {
-    display:none; 
-    margin:10px;
+    display: none;
+    margin: 10px;
 }
 
 /*
   Change the look'n'feel of labels (which are adjacent to radiobuttons).
   Add some margin, padding to label
 */
-input[type=radio] + label {
-    display:inline-block;
+input[type=radio]+label {
+    display: inline-block;
     /* margin:-2px; */
     /* padding: 4px 12px; */
     /* background-color: #e7e7e7; */
     /* border-color: #ddd; */
 }
+
 /*
  Change background color for label next to checked radio button
  to make it look like highlighted button
 */
-input[type=radio]:checked + label { 
-   /* background-image: none; */
+input[type=radio]:checked+label {
+    /* background-image: none; */
     /* background-color:#d0d0d0; */
 }
 
+.control input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+#progress_bar {
+    margin: 10px 0;
+    padding: 3px;
+    border: 1px solid #000;
+    font-size: 14px;
+    clear: both;
+    opacity: 0;
+    -moz-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    -webkit-transition: opacity 1s linear;
+}
+
+#progress_bar.loading {
+    opacity: 1.0;
+}
+
+#progress_bar .percent {
+    background-color: #0130ff;
+    height: auto;
+    width: 0;
+}
 
 /* .ql-container.ql-snow{
     border: 3px solid #d9534f;

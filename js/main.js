@@ -1,5 +1,3 @@
-window.EVERCHECKED = false;
-
 var toolbarOptions = [
   [{
     'header': [1, 2, 3, false]
@@ -93,7 +91,7 @@ function saveAsPDF() {
 }
 
 function saveAsTXT() {
-  data = editor.getText();
+  data = editor.root.innerHTML;
   fileName = Date.now() + ".txt";
   var a = document.createElement("a");
   a.style.display = "none";
@@ -110,102 +108,94 @@ function saveAsTXT() {
   hideShare();
 }
 
-// var setLS_1 = function(){
-//   store.set("slot" , "1");
-//   removeClass(document.getElementById("slot1") , "is-outlined");
-// };
-
-// var setLS_2 = function(){
-//   store.set("slot" , "2");
-//   removeClass(document.getElementById("slot2") , "is-outlined");
-// };
-
-// var setLS_3 = function(){
-//   store.set("slot" , "3");
-//   removeClass(document.getElementById("slot3") , "is-outlined");
-// };
-
-// window.onload = function(e){
-//   whichslot = store.get("slot");
-//   if (whichslot == "1"){
-//     removeClass(document.getElementById("slot1l") , "is-outlined");
-//   }else if (whichslot == "2"){
-//     removeClass(document.getElementById("slot2l") , "is-outlined");
-
-//   }else if (whichslot == "3"){
-//     removeClass(document.getElementById("slot3l") , "is-outlined");
-
-//   }else{
-    
-//   }
-// };
-
-
-
-var rad = document.slotForm.slot;
-var prev = null;
-for (var i = 0; i < rad.length; i++) {
-    rad[i].addEventListener('change', function() {
-        (prev) ? addClass(document.getElementById(prev.value + "l") , "is-outlined"): null;
-        if (this !== prev) {
-            prev = this;
-        }
-        slotchange(this.value);
-    });
-}
-
-function slotchange(v){
-  window.EVERCHECKED = true;
-  if (v == "slot1"){
-        removeClass(document.getElementById("slot1l") , "is-outlined");
-        loadslot("1");
-      }else if (v == "slot2"){
-        removeClass(document.getElementById("slot2l") , "is-outlined");
-        loadslot("2");
-      }else if (v == "slot3"){
-        loadslot("3");
-        removeClass(document.getElementById("slot3l") , "is-outlined");
-          }else{
-    
+try {
+  setInterval(function () {
+    localStorage.setItem("draft0", editor.root.innerHTML);
+  }, 1000);
+} catch (e) {
+  if (e == QUOTA_EXCEEDED_ERR) {
+    alert('AutoSave Failed!');
   }
-    
 }
 
-function loadslot(s){
-  editor.root.innerHTML = store.get("draft" + s);
+window.onload = function (e) {
+  editor.root.innerHTML = localStorage.getItem("draft0");
+};
+// mango = false;
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+  // Great success! All the File APIs are supported.
+} else {
+  document.getElementById("fileloadbtn").style.display = "none";
 }
 
-if (EVERCHECKED){
-  try {
-    setInterval(function() {
-      
-      if (["1" , "2" , "3"].indexOf(store.get("slot"))){
-        getslot = store.get("slot");
-      }else{
-        getslot = "0";
-      }
-      
-      store.set("draft" + getslot, editor.root.innerHTML);
-    }, 1000);
-  } catch (e) {
-    if (e == QUOTA_EXCEEDED_ERR) {
-      alert('AutoSave Failed!');
-    }
-  }
-}else{
-  try {
-    setInterval(function() {
-      store.set("draft0", editor.root.innerHTML);
-    }, 1000);
-  } catch (e) {
-    if (e == QUOTA_EXCEEDED_ERR) {
-      alert('AutoSave Failed!');
+var reader;
+var progress = document.querySelector('.percent');
+
+function abortRead() {
+  reader.abort();
+}
+
+function errorHandler(evt) {
+  switch (evt.target.error.code) {
+    case evt.target.error.NOT_FOUND_ERR:
+      alert('File Not Found!');
+      break;
+    case evt.target.error.NOT_READABLE_ERR:
+      alert('File is not readable');
+      break;
+    case evt.target.error.ABORT_ERR:
+      break; // noop
+    default:
+      alert('An error occurred reading this file.');
+  };
+}
+
+function updateProgress(evt) {
+  // evt is an ProgressEvent.
+  if (evt.lengthComputable) {
+    var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+    // Increase the progress bar length.
+    if (percentLoaded < 100) {
+      progress.style.width = percentLoaded + '%';
+      progress.textContent = percentLoaded + '%';
     }
   }
 }
 
+function handleFileSelect(evt) {
+  // Reset progress indicator on new file selection.
+  progress.style.width = '0%';
+  progress.textContent = '0%';
 
-window.onload = function(e){
-  editor.root.innerHTML = store.get("draft0");
+  reader = new FileReader();
+  reader.onerror = errorHandler;
+  reader.onprogress = updateProgress;
+  reader.onabort = function (e) {
+    alert('File read cancelled');
+  };
+  reader.onloadstart = function (e) {
+    document.getElementById('progress_bar').className = 'loading';
+  };
+  reader.onload = function (e) {
+    // Ensure that the progress bar displays 100% at the end.
+    progress.style.width = '100%';
+    progress.textContent = '100%';
+    setTimeout("document.getElementById('progress_bar').className='';", 2000);
+    console.log("sssd");
+
+  };
+
+  reader.onloadend = function (evt) {
+    if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+      console.log(typeof (evt.target.result));
+      editor.root.innerHTML = evt.target.result;
+      // console.log("ss");
+    }
+    // console.log("sss");
+  };
+
+  // Read in the image file as a binary string.
+  reader.readAsBinaryString(evt.target.files[0]);
 }
 
+document.getElementById('loadfileinput').addEventListener('change', handleFileSelect, false);

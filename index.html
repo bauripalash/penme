@@ -5,9 +5,8 @@
     <title>Penme - Quick Text Editor</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <script src="https://kit.fontawesome.com/6d5d6cb617.js"></script> -->
     <link rel="stylesheet" href="./css/bulma/bulmaswatch.min.css">
-    <link href="./css/modal-fx.min.css" rel="stylesheet">
+    <!-- <link href="./css/modal-fx.min.css" rel="stylesheet"> -->
     <link href="./js/quill/quill.snow.css" rel="stylesheet">
     <link href="./css/main.css" rel="stylesheet">
 </head>
@@ -31,35 +30,17 @@
 
                 <div class="navbar-item">
                     <div class="field is-grouped">
-                    <form name="slotForm">
-                    <input type="radio" id="slot1" name="slot" value="slot1">
-                        <label for="slot1">
-                            <a id="slot1l" class="button is-danger is-rounded is-outlined">
+
+                        <p id="fileloadbtn" class="control">
+                            <button class="button is-information is-rounded  is-outlined">
                                 <span class="icon">
-                                    📋
+                                    📁
                                 </span>
-                                <span> 1</span>
-                            </a>
-                        </label>
-                        <input type="radio" id="slot2" name="slot" value="slot2">
-                        <label for="slot2">
-                            <a id="slot2l" class="button is-danger is-rounded is-outlined">
-                                <span class="icon">
-                                    📋
-                                </span>
-                                <span> 2</span>
-                            </a>
-                        </label>
-                        <input type="radio" id="slot3" name="slot" value="slot3">
-                        <label for="slot3">
-                            <a id="slot3l" class="button is-danger is-rounded  is-outlined">
-                                <span class="icon">
-                                    📋
-                                </span>
-                                <span> 3</span>
-                            </a>
-                        </label>
-                        </form>
+                                <span> Load</span>
+                            </button>
+                            <input id="loadfileinput" type="file" name="loadfile" />
+                        </p>
+
                         <p class="control">
                             <a class="button is-information is-rounded  is-outlined" onclick="showShare()" href="#">
                                 <span class="icon">
@@ -78,7 +59,9 @@
 
 
     <div class="pre-editor">
-
+        <div id="progress_bar">
+            <div class="percent">0%</div>
+        </div>
         <div id="pm-editor">
 
         </div>
@@ -93,7 +76,8 @@
             </header>
             <section class="modal-card-body">
                 <p>
-                    Penme is a simple and minimal quick note taking webapp for smartphone devices but also can be used on computers! ;)
+                    Penme is a simple and minimal quick note taking webapp for smartphone devices but also can be used
+                    on computers! ;)
                     There's nothing much to tell about it!
                     <br><br>
                     <b>Maker : Palash Bauri</b><br><br>
@@ -101,7 +85,7 @@
                 </p>
             </section>
             <footer class="modal-card-foot">
-                <button class="button" onclick="hideAbout()" >Back</button>
+                <button class="button" onclick="hideAbout()">Back</button>
             </footer>
         </div>
     </div>
@@ -114,32 +98,32 @@
             </div>
             <button class="modal-close is-large" onclick="hideShare()" aria-label="close"></button>
           </div> -->
-          <div id="share-modal" class="modal modal-fx-3dFlipVertical">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-              <div class="box">
+    <div id="share-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
                 <article class="media">
-                  <!-- <div class="media-left">
+                    <!-- <div class="media-left">
                     <figure class="image is-64x64">
                       <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
                     </figure>
                   </div> -->
-                  <div class="media-content">
-                    <div class="content">
-                      <h4> Share 📖 </h4>
-                        <p>
-                        
-                        <button class="button is-success" onclick="saveAsPDF()">as PDF</button>
-                        <button class="button is-white" onclick="saveAsTXT()">as TXT</button>
-                      </p>
+                    <div class="media-content">
+                        <div class="content">
+                            <h4> Share 📖 </h4>
+                            <p>
+
+                                <button class="button is-success" onclick="saveAsPDF()">as PDF</button>
+                                <button class="button is-white" onclick="saveAsTXT()">as TXT</button>
+                            </p>
+                        </div>
+
                     </div>
-                    
-                  </div>
                 </article>
-              </div>
             </div>
-            <button class="modal-close is-large" aria-label="close"></button>
-          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
 
     <footer>
         <p>Made With 💖 by XEDTECH 🇮🇳 | <u><a href="#" onclick="showAbout()">About</a></u></p>
@@ -147,7 +131,8 @@
 </body>
 <script src="js/modal-fx.min.js"></script>
 <script src="./js/quill/quill.min.js"></script>
-<script src="js/store.modern.min.js"></script>
+<!-- <script src="js/store.modern.min.js"></script> -->
 <script src="./js/jspdf.min.js"></script>
 <script src="js/main.js"></script>
+
 </html>
