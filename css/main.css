@@ -65,17 +65,24 @@ input[type=radio]:checked+label {
 }
 
 .control input[type=file] {
-    font-size: 100px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
+    /* font-size: 100px; */
+    /* position: absolute; */
+    /* top: -1000px; */
+    /* left: 0; */
+    /* top: 0; */
+    /* opacity: 1.0; */
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 1.0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }
 
 #progress_bar {
     margin: 10px 0;
     padding: 3px;
-    border: 1px solid #000;
+    border: 1px solid #d9534f;
     font-size: 14px;
     clear: both;
     opacity: 0;

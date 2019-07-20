@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./css/bulma/bulmaswatch.min.css">
-    <!-- <link href="./css/modal-fx.min.css" rel="stylesheet"> -->
     <link href="./js/quill/quill.snow.css" rel="stylesheet">
     <link href="./css/main.css" rel="stylesheet">
 </head>
@@ -32,13 +31,16 @@
                     <div class="field is-grouped">
 
                         <p id="fileloadbtn" class="control">
-                            <button class="button is-information is-rounded  is-outlined">
+                            <!-- <button class="button is-information is-rounded  is-outlined">
                                 <span class="icon">
                                     📁
                                 </span>
                                 <span> Load</span>
-                            </button>
+                            </button> -->
                             <input id="loadfileinput" type="file" name="loadfile" />
+                            <label for="loadfileinput" class="button is-information is-rounded  is-outlined">
+                                📁 Load
+                            </label>
                         </p>
 
                         <p class="control">
@@ -90,25 +92,12 @@
         </div>
     </div>
 
-    <!-- <div id="share-modal" class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-              <h3> Share </h3>
-              <button onclick="saveAsPDF()">Save as PDF</button>
-            </div>
-            <button class="modal-close is-large" onclick="hideShare()" aria-label="close"></button>
-          </div> -->
     <div id="share-modal" class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
             <div class="box">
                 <article class="media">
-                    <!-- <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-                    </figure>
-                  </div> -->
-                    <div class="media-content">
+                      <div class="media-content">
                         <div class="content">
                             <h4> Share 📖 </h4>
                             <p>
@@ -126,12 +115,11 @@
     </div>
 
     <footer>
-        <p>Made With 💖 by XEDTECH 🇮🇳 | <u><a href="#" onclick="showAbout()">About</a></u></p>
+        <p>Handcrafted With 💖 by <a style="color:white" href="https://fb.me/bauripalash"><u>Palash Bauri</u> 👻</a> |🇮🇳| <u><a href="#" onclick="showAbout()">About</a></u></p>
     </footer>
 </body>
 <script src="js/modal-fx.min.js"></script>
 <script src="./js/quill/quill.min.js"></script>
-<!-- <script src="js/store.modern.min.js"></script> -->
 <script src="./js/jspdf.min.js"></script>
 <script src="js/main.js"></script>
 

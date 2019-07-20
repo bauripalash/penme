@@ -75,7 +75,7 @@ function hideShare() {
 }
 
 function saveAsPDF() {
-  var doc = new jsPDF();
+  var doc = new jsPDF('p', 'px', 'a4');
   var source = editor.root.innerHTML;
   doc.fromHTML(
     source,
@@ -84,15 +84,15 @@ function saveAsPDF() {
       'width': 180
     });
 
-  // doc.output("datauri");
-  doc.save(Date.now() + ".pdf");
+  doc.output("datauri");
+  // doc.save(Date.now() + ".pdf");
   hideShare();
 
 }
 
 function saveAsTXT() {
-  data = editor.root.innerHTML;
-  fileName = Date.now() + ".txt";
+  data = JSON.stringify(editor.getContents()["ops"]);
+  fileName = Date.now() + ".pnme.txt";
   var a = document.createElement("a");
   a.style.display = "none";
   document.body.appendChild(a);
@@ -188,7 +188,9 @@ function handleFileSelect(evt) {
   reader.onloadend = function (evt) {
     if (evt.target.readyState == FileReader.DONE) { // DONE == 2
       console.log(typeof (evt.target.result));
-      editor.root.innerHTML = evt.target.result;
+      console.log(evt.target.result);
+      // editor.root.innerHTML = evt.target.result;
+      editor.setContents(JSON.parse(evt.target.result) , "api");
       // console.log("ss");
     }
     // console.log("sss");
