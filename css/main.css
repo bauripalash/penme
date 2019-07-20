@@ -1,6 +1,6 @@
 .penme-name {
-    font-family: "Orbitron";
-    font-size: 25px;
+    font-family: 'Orbitron', cursive;
+    font-size: 30px;
     color: #d9534f;
 }
 
@@ -72,11 +72,11 @@ input[type=radio]:checked+label {
     /* top: 0; */
     /* opacity: 1.0; */
     width: 0.1px;
-	height: 0.1px;
-	opacity: 1.0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    height: 0.1px;
+    opacity: 1.0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
 #progress_bar {
@@ -100,6 +100,51 @@ input[type=radio]:checked+label {
     height: auto;
     width: 0;
 }
+
+
+
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #d9534f;
+    border-right: 16px solid rgb(0, 113, 128);
+    border-bottom: 16px solid #d9534f;
+    border-left: 16px solid rgb(0, 113, 128);
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
 
 /* .ql-container.ql-snow{
     border: 3px solid #d9534f;

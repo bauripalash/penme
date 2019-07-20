@@ -1,4 +1,4 @@
-var toolbarOptions = [
+const toolbarOptions = [
   [{
     'header': [1, 2, 3, false]
   }, 'bold', 'italic', 'underline', 'strike', {
@@ -25,7 +25,7 @@ var toolbarOptions = [
   // ['clean']                                         // remove formatting button
 ];
 
-var options = {
+const options = {
   // debug: 'info',
   modules: {
     toolbar: toolbarOptions
@@ -35,48 +35,48 @@ var options = {
   theme: 'snow'
 };
 
-var editor = new Quill('#pm-editor', options);
+const editor = new Quill('#pm-editor', options);
 
-function hasClass(ele, cls) {
+let hasClass = (ele, cls) => {
   return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
-}
+};
 
-function addClass(ele, cls) {
+let addClass = (ele, cls) => {
   if (!hasClass(ele, cls)) ele.className += " " + cls;
-}
+};
 
-function removeClass(ele, cls) {
+let removeClass = (ele, cls) => {
   if (hasClass(ele, cls)) {
-    var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+    let reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
     ele.className = ele.className.replace(reg, ' ');
   }
-}
+};
 
-function toggleNav() {
+let toggleNav = () => {
   document.getElementById('navbar-burger').classList.toggle('is-active');
   document.getElementById('navbar-extra').classList.toggle('is-active');
 
-}
+};
 
-function showAbout() {
+let showAbout = () => {
   addClass(document.getElementById("about-modal"), "is-active");
-}
+};
 
-function hideAbout() {
+let hideAbout = () => {
   removeClass(document.getElementById("about-modal"), "is-active");
-}
+};
 
-function showShare() {
+let showShare = () => {
   addClass(document.getElementById("share-modal"), "is-active");
-}
+};
 
-function hideShare() {
+let hideShare = () => {
   removeClass(document.getElementById("share-modal"), "is-active");
-}
+};
 
-function saveAsPDF() {
-  var doc = new jsPDF('p', 'px', 'a4');
-  var source = editor.root.innerHTML;
+let saveAsPDF = () => {
+  let doc = new jsPDF('p', 'px', 'a4');
+  let source = editor.root.innerHTML;
   doc.fromHTML(
     source,
     15,
@@ -84,16 +84,16 @@ function saveAsPDF() {
       'width': 180
     });
 
-  doc.output("datauri");
-  // doc.save(Date.now() + ".pdf");
+  // doc.output("datauri");
+  doc.save(Date.now() + ".pdf");
   hideShare();
 
 }
 
-function saveAsTXT() {
-  data = JSON.stringify(editor.getContents()["ops"]);
-  fileName = Date.now() + ".pnme.txt";
-  var a = document.createElement("a");
+let saveAsTXT = () => {
+  let data = JSON.stringify(editor.getContents()["ops"]);
+  let fileName = Date.now() + ".pnme.txt";
+  let a = document.createElement("a");
   a.style.display = "none";
   document.body.appendChild(a);
   a.href = window.URL.createObjectURL(
@@ -109,7 +109,7 @@ function saveAsTXT() {
 }
 
 try {
-  setInterval(function () {
+  setInterval(() => {
     localStorage.setItem("draft0", editor.root.innerHTML);
   }, 1000);
 } catch (e) {
@@ -118,8 +118,13 @@ try {
   }
 }
 
-window.onload = function (e) {
-  editor.root.innerHTML = localStorage.getItem("draft0");
+window.onload = (e) => {
+  let data = localStorage.getItem("draft0");
+  if (data){
+    editor.root.innerHTML = data;
+  }
+  document.getElementById("loader").style.display = "none";
+  
 };
 // mango = false;
 if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -128,14 +133,14 @@ if (window.File && window.FileReader && window.FileList && window.Blob) {
   document.getElementById("fileloadbtn").style.display = "none";
 }
 
-var reader;
-var progress = document.querySelector('.percent');
+let reader;
+let progress = document.querySelector('.percent');
 
-function abortRead() {
+let abortRead = () => {
   reader.abort();
-}
+};
 
-function errorHandler(evt) {
+let errorHandler = (evt) => {
   switch (evt.target.error.code) {
     case evt.target.error.NOT_FOUND_ERR:
       alert('File Not Found!');
@@ -150,10 +155,10 @@ function errorHandler(evt) {
   };
 }
 
-function updateProgress(evt) {
+let updateProgress = (evt) => {
   // evt is an ProgressEvent.
   if (evt.lengthComputable) {
-    var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+    let percentLoaded = Math.round((evt.loaded / evt.total) * 100);
     // Increase the progress bar length.
     if (percentLoaded < 100) {
       progress.style.width = percentLoaded + '%';
@@ -162,7 +167,7 @@ function updateProgress(evt) {
   }
 }
 
-function handleFileSelect(evt) {
+let handleFileSelect = (evt) => {
   // Reset progress indicator on new file selection.
   progress.style.width = '0%';
   progress.textContent = '0%';
@@ -170,13 +175,13 @@ function handleFileSelect(evt) {
   reader = new FileReader();
   reader.onerror = errorHandler;
   reader.onprogress = updateProgress;
-  reader.onabort = function (e) {
+  reader.onabort = (e) => {
     alert('File read cancelled');
   };
-  reader.onloadstart = function (e) {
+  reader.onloadstart = (e) => {
     document.getElementById('progress_bar').className = 'loading';
   };
-  reader.onload = function (e) {
+  reader.onload = (e) => {
     // Ensure that the progress bar displays 100% at the end.
     progress.style.width = '100%';
     progress.textContent = '100%';
@@ -185,7 +190,7 @@ function handleFileSelect(evt) {
 
   };
 
-  reader.onloadend = function (evt) {
+  reader.onloadend =  (evt) => {
     if (evt.target.readyState == FileReader.DONE) { // DONE == 2
       console.log(typeof (evt.target.result));
       console.log(evt.target.result);

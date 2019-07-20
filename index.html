@@ -5,13 +5,15 @@
     <title>Penme - Quick Text Editor</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Penme is a simple note taking app">
     <link rel="stylesheet" href="./css/bulma/bulmaswatch.min.css">
     <link href="./js/quill/quill.snow.css" rel="stylesheet">
+    <link href="/orbitron/style.css" rel="stylesheet"> 
     <link href="./css/main.css" rel="stylesheet">
 </head>
 
 <body class="is-dark">
-
+    <div id="loader"></div>
     <nav class="navbar is-transparent">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
@@ -122,5 +124,13 @@
 <script src="./js/quill/quill.min.js"></script>
 <script src="./js/jspdf.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(function() {
+              console.log('Service Worker Registered');
+        });
+    }
+  </script>
 
 </html>
