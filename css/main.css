@@ -4,11 +4,26 @@
     color: #d9534f;
 }
 
+html {
+
+    background-image: url("/pattern-min.png") !important;
+    background-repeat: repeat !important;
+}
+
+
+
 .pre-editor {
     margin-top: 20px !important;
     margin-left: 15px !important;
     margin-right: 15px !important;
+    background: #1f2d3b !important;
+    
 }
+.navbar{
+    /* background: #1f2d3b !important; */
+}
+
+
 
 footer p {
     position: fixed;

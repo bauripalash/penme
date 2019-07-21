@@ -1,0 +1,11 @@
+{
+  "name": "penme",
+  "version": "0.1",
+  "main": "index.js",
+  "repository": "git@github.com:bauripalash/penme.git",
+  "author": "Palash Bauri <palashbauri1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "purify-css": "^1.2.5"
+  }
+}
