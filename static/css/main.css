@@ -1,3 +1,9 @@
+/*!
+ * Penme Main Style
+ * http://penme.ml
+ * Copyright (c) Palash Bauri
+ */
+
 .penme-name {
     font-family: 'Orbitron', cursive;
     font-size: 30px;
@@ -6,7 +12,7 @@
 
 html {
 
-    background-image: url("/pattern-min.png") !important;
+    background-image: url("imgs/pattern-min.png") !important;
     background-repeat: repeat !important;
 }
 

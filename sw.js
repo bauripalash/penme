@@ -2,22 +2,19 @@ var cacheName = 'penme';
 var filesToCache = [
   '/',
   '/index.html',
-  '/css/bulma/bulmaswatch.min.css.map',
-  '/css/bulma/bulmaswatch.min.css',
-  '/css/main.css',
-  '/js/quill/quill.core.css',
-  '/js/quill/quill.core.js',
-  '/js/quill/quill.min.js',
-  '/js/quill/quill.min.js.map',
-  '/js/quill/quill.snow.css',
-  '/js/jspdf.min.js',
-  '/js/main.js',
-  '/js/modal-fx.min.js',
+  '/static/all.min.css',
+  '/static/js/quill/quill.core.js',
+  '/static/js/quill/quill.min.js',
+  '/static/js/quill/quill.min.js.map',
+  '/static/orbitron/Orbitron Black-0.woff2',
+  '/static/js/jspdf.min.js',
+  '/static/js/main.js',
+  '/static/js/modal-fx.min.js',
 ];self.addEventListener('install', function(e) {
-  // console.log('[ServiceWorker] Install');
+  console.log('[ServiceWorker] Install');
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
-      // console.log('[ServiceWorker] Caching app shell');
+      console.log('[ServiceWorker] Caching app shell');
       return cache.addAll(filesToCache);
     })
   );
