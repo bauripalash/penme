@@ -158,7 +158,10 @@ input[type=radio]:checked+label {
     }
 }
 
-
+.progressbar{
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+}
 
 
 /* .ql-container.ql-snow{

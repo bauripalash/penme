@@ -1,12 +1,18 @@
 const purify = require("purify-css");
 
 
-var content = ['js/*.js', 'js/**/*.js' , 'index.html'];
-var css = ['css/bulma/bulmaswatch.min.css' , "css/main.css" , "js/quill/quill.snow.css"];
+var content = ['static/js/*.js', 'static/js/quill/*.js', 'index.html'];
+
+var css = ['static/css/bulma/bulmaswatch.min.css',
+  "static/css/main.css",
+  "static/js/quill/quill.snow.css",
+  "static/js/quill/quill.core.css",
+  "static/orbitron/*.css"
+];
 
 var options = {
   // Will write purified CSS to this file.
-  output: 'purified.css',
+  output: './static/all.min.css',
   minify: true,
 };
 

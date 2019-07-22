@@ -6,14 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Penme is a simple note taking app">
-    <!-- <link rel="stylesheet" href="./css/bulma/bulmaswatch.min.css"> -->
-    <!-- <link href="./js/quill/quill.snow.css" rel="stylesheet"> -->
-    <link href="/orbitron/style.css" rel="stylesheet"> 
-    <link href="./purified.css" rel="stylesheet">
+    <link href="/static/all.min.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body class="is-dark">
-        
+
     <div id="loader"></div>
     <nav class="navbar is-transparent">
         <div class="navbar-brand">
@@ -61,10 +59,11 @@
             </div>
         </div>
     </nav>
-
-    <div id="progress_bar">
+    <div class="progressbar">
+        <div id="progress_bar">
             <div class="percent">0%</div>
         </div>
+    </div>
     <div class="pre-editor">
 
         <div id="pm-editor">
@@ -100,7 +99,7 @@
         <div class="modal-content">
             <div class="box">
                 <article class="media">
-                      <div class="media-content">
+                    <div class="media-content">
                         <div class="content">
                             <h4> Share 📖 </h4>
                             <p>
@@ -118,20 +117,21 @@
     </div>
 
     <footer>
-        <p>Handcrafted With 💖 by <a style="color:white" href="https://fb.me/bauripalash"><u>Palash Bauri</u> 👻</a> |🇮🇳| <u><a href="#" onclick="showAbout()">About</a></u></p>
+        <p>Handcrafted With 💖 by <a style="color:white" href="https://fb.me/bauripalash"><u>Palash Bauri</u> 👻</a>
+            |🇮🇳| <u><a href="#" onclick="showAbout()">About</a></u></p>
     </footer>
 </body>
-<script src="js/modal-fx.min.js"></script>
-<script src="./js/quill/quill.min.js"></script>
-<script src="./js/jspdf.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/static/js/modal-fx.min.js"></script>
+<script src="/static/js/quill/quill.min.js"></script>
+<script src="/static/js/jspdf.min.js"></script>
+<script src="/static/js/main.js"></script>
 <script>
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
-        .then(function() {
-              console.log('Service Worker Registered');
-        });
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function () {
+                console.log('Service Worker Registered');
+            });
     }
-  </script>
+</script>
 
 </html>
