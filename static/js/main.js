@@ -30,7 +30,7 @@ const options = {
   modules: {
     toolbar: toolbarOptions
   },
-  placeholder: 'Compose an epic...',
+  placeholder: 'Pen a Revolution....',
   // readOnly: true,
   theme: 'snow'
 };
@@ -206,3 +206,4 @@ let handleFileSelect = (evt) => {
 }
 
 document.getElementById('loadfileinput').addEventListener('change', handleFileSelect, false);
+

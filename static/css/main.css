@@ -22,10 +22,11 @@ html {
     margin-top: 20px !important;
     margin-left: 15px !important;
     margin-right: 15px !important;
-    background: #1f2d3b !important;
-    
+    background: #000f18 !important;
+
 }
-.navbar{
+
+.navbar {
     /* background: #1f2d3b !important; */
 }
 
@@ -164,11 +165,14 @@ input[type=radio]:checked+label {
     }
 }
 
-.progressbar{
+.progressbar {
     margin-left: 15px !important;
     margin-right: 15px !important;
 }
 
+.ql-editor.ql-blank::before {
+color:rgba(255, 255, 255, 0.712) !important;
+}
 
 /* .ql-container.ql-snow{
     border: 3px solid #d9534f;
