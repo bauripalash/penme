@@ -3,9 +3,16 @@
   "version": "0.1",
   "main": "index.js",
   "repository": "git@github.com:bauripalash/penme.git",
-  "author": "Palash Bauri <palashbauri1@gmail.com>",
+  "author": "Palash Bauri",
   "license": "MIT",
+  "scripts": {
+    "start": "gulp && node compilecss.js"
+  },
   "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^4.0.1",
+    "gulp-htmlmin": "^5.0.1",
     "purify-css": "^1.2.5"
   }
 }

@@ -12,7 +12,7 @@ var css = ['static/css/bulma/bulmaswatch.min.css',
 
 var options = {
   // Will write purified CSS to this file.
-  output: './static/all.min.css',
+  output: 'doc/static/all.min.css',
   minify: true,
 };
 

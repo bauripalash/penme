@@ -6,23 +6,6 @@ const toolbarOptions = [
   }, {
     'list': 'bullet'
   }, 'blockquote'],
-  // [],        // toggled buttons
-  // ['blockquote'],
-
-  // [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-  // [],
-  // [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-  // [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-  // [{ 'direction': 'rtl' }],                         // text direction
-
-  // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-
-
-  // [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-  // [{ 'font': [] }],
-  // [{ 'align': [] }],
-
-  // ['clean']                                         // remove formatting button
 ];
 
 const options = {
@@ -108,23 +91,29 @@ let saveAsTXT = () => {
   hideShare();
 }
 
-try {
-  setInterval(() => {
-    localStorage.setItem("draft0", editor.root.innerHTML);
-  }, 1000);
-} catch (e) {
-  if (e == QUOTA_EXCEEDED_ERR) {
-    alert('AutoSave Failed!');
+if (window.location.hash == "") {
+  try {
+    setInterval(() => {
+      localStorage.setItem("draft0", editor.root.innerHTML);
+    }, 1000);
+  } catch (e) {
+    if (e == QUOTA_EXCEEDED_ERR) {
+      alert('AutoSave Failed!');
+    }
   }
 }
 
 window.onload = (e) => {
-  let data = localStorage.getItem("draft0");
-  if (data){
-    editor.root.innerHTML = data;
+  if (window.location.hash == "") {
+    let data = localStorage.getItem("draft0");
+    if (data) {
+      editor.root.innerHTML = data;
+    }
   }
   document.getElementById("loader").style.display = "none";
-  
+  document.documentElement.style.backgroundImage = "url('static/imgs/pattern-min.png')";
+  document.documentElement.style.backgroundRepeat = "repeat";
+
 };
 // mango = false;
 if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -190,12 +179,12 @@ let handleFileSelect = (evt) => {
 
   };
 
-  reader.onloadend =  (evt) => {
+  reader.onloadend = (evt) => {
     if (evt.target.readyState == FileReader.DONE) { // DONE == 2
       console.log(typeof (evt.target.result));
       console.log(evt.target.result);
       // editor.root.innerHTML = evt.target.result;
-      editor.setContents(JSON.parse(evt.target.result) , "api");
+      editor.setContents(JSON.parse(evt.target.result), "api");
       // console.log("ss");
     }
     // console.log("sss");
@@ -207,3 +196,23 @@ let handleFileSelect = (evt) => {
 
 document.getElementById('loadfileinput').addEventListener('change', handleFileSelect, false);
 
+let myFunction = () => {
+  let copyText = document.getElementById("usm-url-link");
+  copyText.select();
+  document.execCommand("copy");
+
+};
+
+let shareAsURL = () => {
+  let data = JSON.stringify(editor.getContents()["ops"]);
+  let enc = window.btoa(LZString.compressToEncodedURIComponent(data));
+  hideShare();
+  document.getElementById("usm-url-link").value = "https://penme.ml/#" + enc;
+  addClass(document.getElementById("urlshare-modal"), "is-active");
+};
+
+let hashh = window.location.hash.substr(1);
+if (window.location.hash != "") {
+  let res = LZString.decompressFromEncodedURIComponent(window.atob(hashh));
+  editor.setContents(JSON.parse(res), "api");
+}

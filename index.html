@@ -5,7 +5,8 @@
     <title>Penme - Pen a Revolution</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Penme is a simple note taking app">
+    <meta name="description" content="Penme is a do-whatever-you-want minimal note taking webapp">
+    <meta name="author" content="Palash Bauri">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png?v=jul232">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png?v=jul232">
@@ -30,8 +31,8 @@
     <meta property="og:image" content="https://penme.ml/static/imgs/scover.png" />
     <meta property="og:description" content="Penme is a simple note taking app Handcrafted by Palash Bauri" />
     <meta property="og:site_name" content="Penme - Pen a Revolution" />
-<meta property="og:image:width" content="1280" />
-<meta property="og:image:height" content="720" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
 
     <link href="/static/all.min.css" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
@@ -59,20 +60,14 @@
                     <div class="field is-grouped">
 
                         <p id="fileloadbtn" class="control">
-                            <!-- <button class="button is-information is-rounded  is-outlined">
-                                <span class="icon">
-                                    📁
-                                </span>
-                                <span> Load</span>
-                            </button> -->
                             <input id="loadfileinput" type="file" name="loadfile" />
-                            <label for="loadfileinput" class="button is-information is-rounded  is-outlined">
-                                📁 Load
+                            <label for="loadfileinput" class="button is-danger is-rounded  ">
+                                📁 Open
                             </label>
                         </p>
 
                         <p class="control">
-                            <a class="button is-information is-rounded  is-outlined" onclick="showShare()" href="#">
+                            <a class="button is-danger is-rounded  " onclick="showShare()" href="#">
                                 <span class="icon">
                                     📎
                                 </span>
@@ -116,7 +111,7 @@
                 </p>
             </section>
             <footer class="modal-card-foot">
-                <button class="button" onclick="hideAbout()">Back</button>
+                <button class="button is-danger" onclick="hideAbout()">Back</button>
             </footer>
         </div>
     </div>
@@ -125,19 +120,46 @@
         <div class="modal-background"></div>
         <div class="modal-content">
             <div class="box">
-                <article class="media">
+                <div class="media">
                     <div class="media-content">
-                        <div class="content">
-                            <h4> Share 📖 </h4>
+                        <div class="sm-content">
+                            <p class="box-title"> Share 📖 </p>
+                            <br>
                             <p>
 
-                                <button class="button is-success" onclick="saveAsPDF()">as PDF</button>
-                                <button class="button is-white" onclick="saveAsTXT()">as TXT</button>
+                                <button class="button is-info is-rounded" onclick="saveAsPDF()">PDF 🗎</button>
+                                <button class="button is-white is-rounded" onclick="saveAsTXT()">TXT 📜</button>
+                                <button class="button is-white is-rounded" onclick="shareAsURL()">URL 🔗</button>
                             </p>
                         </div>
 
                     </div>
-                </article>
+                </div>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div id="urlshare-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <div class="media">
+                    <div class="media-content">
+                        <div class="sm-content">
+                            <p class="box-title"> Share This Link 👇</p>
+                            <br>
+                            <div class="field">
+                                <p class="control has-icons-left">
+                            <input class="input is-rounded is-success" type="text" id="usm-url-link" value="" readonly>
+                            <span class="icon is-small is-left">
+                                🔗
+                              </span>
+                            </p></div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
@@ -148,10 +170,11 @@
             |🇮🇳| <u><a href="#" onclick="showAbout()">About</a></u></p>
     </footer>
 </body>
-<script src="/static/js/modal-fx.min.js"></script>
+<!-- <script src="/static/js/modal-fx.min.js"></script>
 <script src="/static/js/quill/quill.min.js"></script>
 <script src="/static/js/jspdf.min.js"></script>
-<script src="/static/js/main.js"></script>
+<script src="/static/js/lz-string.js"></script> -->
+<script src="/static/all.min.js"></script>
 <script>
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js')
