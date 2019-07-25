@@ -34,13 +34,13 @@
     <meta property="og:image:width" content="1280" />
     <meta property="og:image:height" content="720" />
 
-    <link href="/static/all.min.css" rel="stylesheet">
+    <link href="static/all.min.css" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
 </head>
 
 <body class="is-dark">
 
-    <div id="loader"></div>
+    <div id="loader"></div><div id="snackbar"></div>
     <nav class="navbar is-transparent">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
@@ -127,7 +127,7 @@
                             <br>
                             <p>
 
-                                <button class="button is-info is-rounded" onclick="saveAsPDF()">PDF 🗎</button>
+                                <button class="button is-info is-rounded" onclick="saveAsPDF()">PDF 📰</button>
                                 <button class="button is-white is-rounded" onclick="saveAsTXT()">TXT 📜</button>
                                 <button class="button is-white is-rounded" onclick="shareAsURL()">URL 🔗</button>
                             </p>
@@ -151,11 +151,13 @@
                             <br>
                             <div class="field">
                                 <p class="control has-icons-left">
-                            <input class="input is-rounded is-success" type="text" id="usm-url-link" value="" readonly>
-                            <span class="icon is-small is-left">
-                                🔗
-                              </span>
-                            </p></div>
+                                    <input class="input is-rounded is-success" type="text" id="usm-url-link" value=""
+                                        readonly>
+                                    <span class="icon is-small is-left">
+                                        🔗
+                                    </span>
+                                </p>
+                            </div>
                         </div>
 
                     </div>

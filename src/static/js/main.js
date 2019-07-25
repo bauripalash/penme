@@ -1,3 +1,6 @@
+
+// Quill JS Editor Config
+
 const toolbarOptions = [
   [{
     'header': [1, 2, 3, false]
@@ -19,6 +22,8 @@ const options = {
 };
 
 const editor = new Quill('#pm-editor', options);
+
+// Some Handy Functions
 
 let hasClass = (ele, cls) => {
   return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
@@ -57,6 +62,14 @@ let hideShare = () => {
   removeClass(document.getElementById("share-modal"), "is-active");
 };
 
+let getDate = () => {
+  let date = new Date();
+  let d = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "--" +  date.getHours() + "" + date.getMinutes() + "" + date.getSeconds();
+  return d;
+}
+
+
+// Save Quill JS text to PDF
 let saveAsPDF = () => {
   let doc = new jsPDF('p', 'px', 'a4');
   let source = editor.root.innerHTML;
@@ -68,11 +81,13 @@ let saveAsPDF = () => {
     });
 
   // doc.output("datauri");
-  doc.save(Date.now() + ".pdf");
+  doc.save(getDate() + ".pdf");
+  showToast("Downloading PDF!");
   hideShare();
 
-}
+};
 
+// Save .pnme.txt file to loaded and edited later
 let saveAsTXT = () => {
   let data = JSON.stringify(editor.getContents()["ops"]);
   let fileName = Date.now() + ".pnme.txt";
@@ -89,8 +104,9 @@ let saveAsTXT = () => {
   window.URL.revokeObjectURL(a.href);
   document.body.removeChild(a);
   hideShare();
-}
+};
 
+// Autosave
 if (window.location.hash == "") {
   try {
     setInterval(() => {
@@ -115,12 +131,13 @@ window.onload = (e) => {
   document.documentElement.style.backgroundRepeat = "repeat";
 
 };
-// mango = false;
 if (window.File && window.FileReader && window.FileList && window.Blob) {
   // Great success! All the File APIs are supported.
 } else {
   document.getElementById("fileloadbtn").style.display = "none";
 }
+
+// File Load Progressbar
 
 let reader;
 let progress = document.querySelector('.percent');
@@ -180,10 +197,9 @@ let handleFileSelect = (evt) => {
   };
 
   reader.onloadend = (evt) => {
-    if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+    if (evt.target.readyState == FileReader.DONE) {
       console.log(typeof (evt.target.result));
       console.log(evt.target.result);
-      // editor.root.innerHTML = evt.target.result;
       editor.setContents(JSON.parse(evt.target.result), "api");
       // console.log("ss");
     }
@@ -196,12 +212,27 @@ let handleFileSelect = (evt) => {
 
 document.getElementById('loadfileinput').addEventListener('change', handleFileSelect, false);
 
-let myFunction = () => {
+let showToast = (msg) => {
+  let sb = document.getElementById("snackbar");
+  sb.innerHTML = msg;
+  sb.className = "show";
+  setTimeout(function(){ sb.className = sb.className.replace("show", ""); }, 1500);
+}
+
+let AutoCopyURL = () => {
   let copyText = document.getElementById("usm-url-link");
   copyText.select();
   document.execCommand("copy");
 
 };
+
+editor.on('text-change', function(delta, oldDelta, source) {
+  if (source == 'api') {
+    //
+  } else if (source == 'user') {
+    window.location.hash = "";
+  }
+});
 
 let shareAsURL = () => {
   let data = JSON.stringify(editor.getContents()["ops"]);
@@ -209,6 +240,7 @@ let shareAsURL = () => {
   hideShare();
   document.getElementById("usm-url-link").value = "https://penme.ml/#" + enc;
   addClass(document.getElementById("urlshare-modal"), "is-active");
+  AutoCopyURL();
 };
 
 let hashh = window.location.hash.substr(1);

@@ -6,13 +6,15 @@
   "author": "Palash Bauri",
   "license": "MIT",
   "scripts": {
-    "start": "gulp && node compilecss.js"
+    "start": "node devrun.js",
+    "compile": "gulp && node compilecss.js"
   },
   "dependencies": {
+    "chokidar": "^3.0.2",
     "gulp": "^4.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-copy": "^4.0.1",
+    "gulp-concat": "^2.6.1",    
     "gulp-htmlmin": "^5.0.1",
+    "live-server": "^1.2.1",
     "purify-css": "^1.2.5"
   }
 }
