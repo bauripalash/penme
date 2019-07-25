@@ -1,4 +1,3 @@
-
 // Quill JS Editor Config
 
 const toolbarOptions = [
@@ -64,27 +63,50 @@ let hideShare = () => {
 
 let getDate = () => {
   let date = new Date();
-  let d = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "--" +  date.getHours() + "" + date.getMinutes() + "" + date.getSeconds();
+  let d = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "--" + date.getHours() + "" + date.getMinutes() + "" + date.getSeconds();
   return d;
 }
 
 
 // Save Quill JS text to PDF
 let saveAsPDF = () => {
-  let doc = new jsPDF('p', 'px', 'a4');
-  let source = editor.root.innerHTML;
-  doc.fromHTML(
-    source,
-    15,
-    15, {
-      'width': 180
-    });
+  // let doc = new jsPDF('p', 'px', 'a4');
+  // let source = editor.root.innerHTML;
+  // doc.fromHTML(
+  //   source,
+  //   15,
+  //   15, {
+  //     'width': 180
+  //   });
 
-  // doc.output("datauri");
-  doc.save(getDate() + ".pdf");
+  // // doc.output("datauri");
+  // doc.save(getDate() + ".pdf");
+  document.getElementsByClassName("ql-editor")[0].style.color = "black";
+  let element = document.getElementsByClassName("ql-editor")[0];
+  let opt = {
+    margin: 1,
+    filename: getDate() + ".pdf",
+    image: {
+      type: 'jpeg',
+      quality: 1
+    },
+    html2canvas: {
+      scale: 2
+    },
+    jsPDF: {
+      unit: 'px',
+      format: 'a4',
+      orientation: 'portrait'
+    }
+  };
+
+  // New Promise-based usage:
+  html2pdf(element, opt);
+  
   showToast("Downloading PDF!");
-  hideShare();
 
+  hideShare();
+  document.getElementsByClassName("ql-editor")[0].style.color = "white";
 };
 
 // Save .pnme.txt file to loaded and edited later
@@ -127,7 +149,7 @@ window.onload = (e) => {
     }
   }
   document.getElementById("loader").style.display = "none";
-  document.getElementsByClassName("ql-picker-label")[0].setAttribute("aria-label" , "Select Header Label");
+  document.getElementsByClassName("ql-picker-label")[0].setAttribute("aria-label", "Select Header Label");
   document.documentElement.className = "bg";
 };
 
@@ -217,7 +239,9 @@ let showToast = (msg) => {
   let sb = document.getElementById("snackbar");
   sb.innerHTML = msg;
   sb.className = "show";
-  setTimeout(function(){ sb.className = sb.className.replace("show", ""); }, 1500);
+  setTimeout(function () {
+    sb.className = sb.className.replace("show", "");
+  }, 1500);
 }
 
 let AutoCopyURL = () => {
@@ -227,7 +251,7 @@ let AutoCopyURL = () => {
 
 };
 
-editor.on('text-change', function(delta, oldDelta, source) {
+editor.on('text-change', function (delta, oldDelta, source) {
   if (source == 'api') {
     //
   } else if (source == 'user') {
