@@ -14,7 +14,7 @@ const toolbarOptions = [
 const options = {
   // debug: 'info',
   modules: {
-    toolbar: toolbarOptions
+    toolbar: '#qtoolbar'
   },
   placeholder: 'Pen a Revolution....',
   // readOnly: true,

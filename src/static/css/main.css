@@ -28,10 +28,13 @@ html {
 
 }
 
-.navbar {
-    /* background: #1f2d3b !important; */
-}
+/* .navbar {
+    /* background: #1f2d3b !important; 
+} */
 
+.ql-container{
+    font-size: 16px !important;
+}
 
 
 footer p {
