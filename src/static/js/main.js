@@ -127,8 +127,7 @@ window.onload = (e) => {
     }
   }
   document.getElementById("loader").style.display = "none";
-  // document.documentElement.style.backgroundImage = "url('static/imgs/pattern-min.png')";
-  // document.documentElement.style.backgroundRepeat = "repeat";
+  document.getElementsByClassName("ql-picker-label")[0].setAttribute("aria-label" , "Select Header Label");
   document.documentElement.className = "bg";
 };
 
