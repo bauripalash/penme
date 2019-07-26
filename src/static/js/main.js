@@ -70,8 +70,10 @@ let getDate = () => {
 
 // Save Quill JS text to PDF
 let saveAsPDF = () => {
-  // let doc = new jsPDF('p', 'px', 'a4');
+  // let doc = new jsPDF({ filters: ['ASCIIHexEncode'] });
   // let source = editor.root.innerHTML;
+  // doc.setFont("NotoSans","normal");
+  // doc.setFontSize(16);
   // doc.fromHTML(
   //   source,
   //   15,
@@ -80,9 +82,13 @@ let saveAsPDF = () => {
   //   });
 
   // // doc.output("datauri");
+  // console.log(doc.getFontList());
   // doc.save(getDate() + ".pdf");
-  document.getElementsByClassName("ql-editor")[0].style.color = "black";
+  // document.getElementsByClassName("ql-editor")[0].style.color = "black";
+  
+  
   let element = document.getElementsByClassName("ql-editor")[0];
+  element.style.color = "black";
   let opt = {
     margin: 1,
     filename: getDate() + ".pdf",
@@ -96,17 +102,21 @@ let saveAsPDF = () => {
     jsPDF: {
       unit: 'px',
       format: 'a4',
-      orientation: 'portrait'
+      orientation: 'portrait',
     }
   };
 
   // New Promise-based usage:
-  html2pdf(element, opt);
+  html2pdf(element, opt).then(()=>{
+    element.style.color="white";
+
+  })
+  
   
   showToast("Downloading PDF!");
 
   hideShare();
-  document.getElementsByClassName("ql-editor")[0].style.color = "white";
+  // document.getElementsByClassName("ql-editor")[0].style.color = "white";
 };
 
 // Save .pnme.txt file to loaded and edited later
