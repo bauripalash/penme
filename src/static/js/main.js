@@ -69,7 +69,7 @@ let getDate = () => {
 
 
 // Save Quill JS text to PDF
-let saveAsPDF = () => {
+// let saveAsPDF = () => {
   // let doc = new jsPDF({ filters: ['ASCIIHexEncode'] });
   // let source = editor.root.innerHTML;
   // doc.setFont("NotoSans","normal");
@@ -111,25 +111,25 @@ let saveAsPDF = () => {
   //   element.style.color="white";
 
   // })
-  var rawdata = document.getElementsByClassName("ql-editor")[0].innerHTML;
-  var printWindow = window.open('', '', 'height=842,width=595');
-  printWindow.document.write(`<html><head><title></title></head><body><style type="text/css">
-  @page{
-    size: auto;
-    margin: 3mm;
-  }
-  </style>
-  ${rawdata}
-  </body></html>`);
-  printWindow.document.close();
-  printWindow.print();
+  // var rawdata = document.getElementsByClassName("ql-editor")[0].innerHTML;
+  // var printWindow = window.open('', '', 'height=842,width=595');
+  // printWindow.document.write(`<html><head><title></title></head><body><style type="text/css">
+  // @page{
+  //   size: auto;
+  //   margin: 3mm;
+  // }
+  // </style>
+  // ${rawdata}
+  // </body></html>`);
+  // printWindow.document.close();
+  // printWindow.print();
 
 
-  showToast("Downloading PDF!");
+  // showToast("Downloading PDF!");
 
-  hideShare();
+  // hideShare();
   // document.getElementsByClassName("ql-editor")[0].style.color = "white";
-};
+// };
 
 // Save .pnme.txt file to loaded and edited later
 let saveAsTXT = () => {
