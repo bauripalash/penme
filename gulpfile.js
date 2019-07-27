@@ -12,7 +12,7 @@ const destination = "./docs/";
 function js() {
     return src(['src/static/js/modal-fx.min.js',
             'src/static/js/quill/quill.min.js',
-            'src/static/js/html2pdf.js',
+            'src/static/js/jspdf.min.js',
             'src/static/js/lz-string.js',
             'src/static/js/main.js'
         ])

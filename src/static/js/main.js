@@ -85,34 +85,46 @@ let saveAsPDF = () => {
   // console.log(doc.getFontList());
   // doc.save(getDate() + ".pdf");
   // document.getElementsByClassName("ql-editor")[0].style.color = "black";
-  
-  
-  let element = document.getElementsByClassName("ql-editor")[0];
-  element.style.color = "black";
-  let opt = {
-    margin: 1,
-    filename: getDate() + ".pdf",
-    image: {
-      type: 'jpeg',
-      quality: 1
-    },
-    html2canvas: {
-      scale: 2
-    },
-    jsPDF: {
-      unit: 'px',
-      format: 'a4',
-      orientation: 'portrait',
-    }
-  };
 
-  // New Promise-based usage:
-  html2pdf(element, opt).then(()=>{
-    element.style.color="white";
 
-  })
-  
-  
+  // let element = document.getElementsByClassName("ql-editor")[0];
+  // element.style.color = "black";
+  // let opt = {
+  //   margin: 1,
+  //   filename: getDate() + ".pdf",
+  //   image: {
+  //     type: 'jpeg',
+  //     quality: 1
+  //   },
+  //   html2canvas: {
+  //     scale: 2
+  //   },
+  //   jsPDF: {
+  //     unit: 'px',
+  //     format: 'a4',
+  //     orientation: 'portrait',
+  //   }
+  // };
+
+  // // New Promise-based usage:
+  // html2pdf(element, opt).then(()=>{
+  //   element.style.color="white";
+
+  // })
+  var rawdata = document.getElementsByClassName("ql-editor")[0].innerHTML;
+  var printWindow = window.open('', '', 'height=842,width=595');
+  printWindow.document.write(`<html><head><title></title></head><body><style type="text/css">
+  @page{
+    size: auto;
+    margin: 3mm;
+  }
+  </style>
+  ${rawdata}
+  </body></html>`);
+  printWindow.document.close();
+  printWindow.print();
+
+
   showToast("Downloading PDF!");
 
   hideShare();
@@ -122,7 +134,7 @@ let saveAsPDF = () => {
 // Save .pnme.txt file to loaded and edited later
 let saveAsTXT = () => {
   let data = JSON.stringify(editor.getContents()["ops"]);
-  let fileName = Date.now() + ".pnme.txt";
+  let fileName = getDate() + ".pnme.txt";
   let a = document.createElement("a");
   a.style.display = "none";
   document.body.appendChild(a);
