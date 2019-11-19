@@ -27,3 +27,7 @@ One day after reaching my class I recalled, "I forgot my notebook", ofcourse i h
 #### Issues:
 * Create Issues if your find errors or bugs
 * Create Issues to submit improvement ideas
+
+---
+## Buy Me A Coffee!
+<a href="https://www.buymeacoffee.com/palash" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="40%" > </a>
